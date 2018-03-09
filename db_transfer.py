@@ -411,7 +411,7 @@ class DbTransfer(TransferBase):
 			logging.error('load switchrule.py fail')
 
 		cur = conn.cursor()
-		cur.execute("SELECT " + ','.join(keys) + " FROM user")
+		cur.execute("SELECT " + ','.join(keys) + " FROM user WHERE port > 0")
 		rows = []
 		for r in cur.fetchall():
 			d = {}
@@ -571,7 +571,7 @@ class Dbv3Transfer(DbTransfer):
 		cur = conn.cursor()
 		try:
 			rows = []
-			cur.execute("SELECT " + ','.join(keys) + " FROM user")
+			cur.execute("SELECT " + ','.join(keys) + " FROM user WHERE port > 0")
 			for r in cur.fetchall():
 				d = {}
 				for column in range(len(keys)):
